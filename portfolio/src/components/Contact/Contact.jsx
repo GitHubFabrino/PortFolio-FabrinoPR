@@ -145,6 +145,11 @@ const ContactForm = styled(motion.form)`
     margin-bottom: 2rem;
     color: #1e293b;
   }
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+    width: 95%;
+  }
 `;
 
 const FormGroup = styled.div`
