@@ -836,6 +836,11 @@ Error generating stack: `+i.message+`
     margin-bottom: 2rem;
     color: #1e293b;
   }
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+    width: 95%;
+  }
 `,Is=ht.div`
   margin-bottom: 1.5rem;
   
