@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { FaBars, FaTimes, FaHome, FaRocket, FaUser, FaCode, FaEnvelope as FaEnvelopeNav } from 'react-icons/fa';
+import {
+  FaBars,
+  FaTimes,
+  FaHome,
+  FaRocket,
+  FaUser,
+  FaCode,
+  FaEnvelope as FaEnvelopeNav,
+} from 'react-icons/fa';
 
 const Navbar = styled.nav`
   position: fixed;
@@ -16,10 +24,6 @@ const Navbar = styled.nav`
   background: rgba(15, 23, 42, 0.9);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
 `;
 
 const Logo = styled(motion.a)`
@@ -33,34 +37,42 @@ const Logo = styled(motion.a)`
   cursor: pointer;
 `;
 
-const NavLinks = styled(motion.ul)`
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  right: 2rem;
-  background: #0f172a;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  gap: 1rem;
-  list-style: none;
-  z-index: 1001;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+const NavContainer = styled.div`
+  position: relative;
 
   @media (min-width: 769px) {
     display: flex;
-    position: static;
-    flex-direction: row;
-    background: transparent;
-    box-shadow: none;
-    padding: 0;
+    align-items: center;
     gap: 2rem;
   }
 `;
 
-const NavItem = styled.li`
-  position: relative;
+const NavLinks = styled.ul`
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+  background: #0f172a;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1001;
+
+  @media (min-width: 769px) {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
 `;
+
+const NavItem = styled.li``;
 
 const NavLink = styled(motion.a)`
   color: #e2e8f0;
@@ -78,7 +90,7 @@ const NavLink = styled(motion.a)`
 `;
 
 const MobileMenuButton = styled(motion.button)`
-  display: none;
+  display: block;
   background: none;
   border: none;
   color: #fff;
@@ -87,8 +99,8 @@ const MobileMenuButton = styled(motion.button)`
   z-index: 1002;
   padding: 0.5rem;
 
-  @media (max-width: 768px) {
-    display: block;
+  @media (min-width: 769px) {
+    display: none;
   }
 `;
 
@@ -119,47 +131,89 @@ const NavHeader = () => {
 
   return (
     <Navbar>
-      <Logo href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+      <Logo
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      >
         Portfolio
       </Logo>
 
-      <MobileMenuButton onClick={toggleMenu} whileTap={{ scale: 0.9 }}>
-        {isMenuOpen ? <FaTimes /> : <FaBars />}
-      </MobileMenuButton>
+      <NavContainer ref={menuRef}>
+        <MobileMenuButton onClick={toggleMenu} whileTap={{ scale: 0.9 }}>
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
+        </MobileMenuButton>
 
-      <NavLinks
-        isOpen={isMenuOpen}
-        ref={menuRef}
-        initial={{ opacity: 0, y: -10 }}
-        animate={isMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
-      >
-        <NavItem>
-          <NavLink href="#" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <FaHome /> Accueil
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <FaUser /> À Propos
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <FaCode /> Projets
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#competance" onClick={(e) => { e.preventDefault(); scrollToSection('competance'); }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <FaRocket /> Compétences
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <FaEnvelopeNav /> Contact
-          </NavLink>
-        </NavItem>
-      </NavLinks>
+        <NavLinks isOpen={isMenuOpen}>
+          <NavItem>
+            <NavLink
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('home');
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaHome /> Accueil
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('about');
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaUser /> À Propos
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('projects');
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaCode /> Projets
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              href="#competance"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('competance');
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaRocket /> Compétences
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaEnvelopeNav /> Contact
+            </NavLink>
+          </NavItem>
+        </NavLinks>
+      </NavContainer>
     </Navbar>
   );
 };

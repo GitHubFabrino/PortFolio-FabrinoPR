@@ -28,7 +28,9 @@ const SectionTitle = styled(motion.h2)`
   position: relative;
   display: inline-block;
   left: 50%;
+  text-align: left;
   transform: translateX(-50%);
+ 
   
   &::after {
     content: '';

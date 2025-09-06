@@ -231,21 +231,8 @@ const Header = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      closeMenu();
-    }
-  };
 
 
   return (
