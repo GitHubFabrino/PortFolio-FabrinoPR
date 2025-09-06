@@ -88,6 +88,10 @@ const InfoItem = styled(motion.div)`
     flex-shrink: 0;
     color: #6366f1;
     font-size: 1.2rem;
+    @media (max-width: 768px) {
+       width: 30px;
+    height: 30px;
+    }
   }
   
   .text {
@@ -291,7 +295,7 @@ const Contact = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <div className="icon">
-              <FaMapMarkerAlt />
+              <FaMapMarkerAlt size={16}/>
             </div>
             <div className="text">
               <h4>Localisation</h4>
@@ -306,7 +310,7 @@ const Contact = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="icon">
-              <FaEnvelope />
+              <FaEnvelope size={16}/>
             </div>
             <div className="text">
               <h4>Email</h4>
@@ -321,7 +325,7 @@ const Contact = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <div className="icon">
-              <FaPhone />
+              <FaPhone size={16}/>
             </div>
             <div className="text">
               <h4>Téléphone</h4>
