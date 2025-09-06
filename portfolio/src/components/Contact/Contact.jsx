@@ -8,7 +8,7 @@ const ContactContainer = styled.section`
   padding: 8rem 0;
   background: #f8fafc;
   color: #1e293b;
-  width: 100%;
+  width: 100vw;
   margin: 0;
   
   & > * {
@@ -37,6 +37,11 @@ const SectionTitle = styled(motion.h2)`
     height: 4px;
     background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
     border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    left: 0;
+    transform: translateX(0);
   }
 `;
 

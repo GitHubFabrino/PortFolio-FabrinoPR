@@ -182,8 +182,8 @@ const ScrollIndicator = styled(motion.div)`
 `;
 
 const ProfileImage = styled(motion.div)`
-  width: 350px;
-  height: 350px;
+  width: 70%;
+  height: 70%;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 2rem;
@@ -212,7 +212,8 @@ const HeaderContent = styled(motion.div)`
   @media (max-width: 992px) {
     flex-direction: column;
     text-align: center;
-    gap: 2rem;
+    gap: 1rem;
+    padding: 0 !important;
   }
 `;
 

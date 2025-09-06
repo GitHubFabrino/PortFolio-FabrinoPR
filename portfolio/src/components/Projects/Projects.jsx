@@ -42,7 +42,7 @@ const SectionTitle = styled(motion.h2)`
   }
     @media (max-width: 768px) {
       left: 0;
-      transform: translateX(-20%);
+      transform: translateX(0);
     }
 `;
 

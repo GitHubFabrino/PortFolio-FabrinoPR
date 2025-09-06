@@ -179,12 +179,20 @@ const TextContent = styled.div`
     font-size: 2rem;
     margin-bottom: 1.5rem;
     color: #1e293b;
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      padding: 0 1rem;
+    }
   }
   
   p {
     color: #64748b;
     line-height: 1.8;
     margin-bottom: 2rem;
+     @media (max-width: 768px) {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
   }
 `;
 
