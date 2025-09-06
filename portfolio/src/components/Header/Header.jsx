@@ -6,6 +6,7 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaRocket, FaChevronDown, FaBars, FaTi
 const Navbar = styled.nav`
   position: fixed;
   top: 0;
+  overflow: hidden;
   left: 0;
   width: 100vw;
   padding: 1.5rem 2rem;
